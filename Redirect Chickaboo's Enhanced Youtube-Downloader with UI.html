@@ -4,4 +4,15 @@
     <meta http-equiv="refresh" content="0; url='https://github.com/Chickaboo/Youtube-Downloader/blob/main/Youtube%20Downloader%20with%20GUI.py'" />
   </head>
   <body>
-    
+  <p id="demo"></p>
+
+<script>
+var seconds = 3;
+var countdown = setInterval(function() {
+  seconds--;
+  document.getElementById("demo").innerHTML = seconds;
+  if (seconds <= 0) clearInterval(countdown);
+}, 1000);
+</script>
+</body>
+</html>  

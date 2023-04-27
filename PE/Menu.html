@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Menu - Socialist Chickaboo Cafe</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			background-color: #f9f9f9;
+		}
+		header {
+			background-color: #fff;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			padding: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			animation: fade-in 1s ease-in-out;
+		}
+		header h1 {
+			margin: 0;
+			font-size: 36px;
+		}
+		nav {
+			display: flex;
+		}
+		nav a {
+			color: #333;
+			text-decoration: none;
+			margin-left: 20px;
+			font-size: 18px;
+			transition: all 0.2s ease-in-out;
+		}
+		nav a:hover {
+			color: #f33;
+		}
+		.menu {
+			padding: 40px;
+			animation: slide-up 1s ease-in-out;
+		}
+		.menu h2 {
+			font-size: 36px;
+			margin: 0;
+			margin-bottom: 40px;
+			text-align: center;
+		}
+		.menu-item {
+			display: flex;
+			margin-bottom: 40px;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			transition: all 0.2s ease-in-out;
+		}
+		.menu-item:hover {
+			box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+		}
+		.menu-item img {
+			margin-right: 20px;
+			flex-shrink: 0;
+			width: 150px;
+			height: 150px;
+			object-fit: cover;
+			border-radius: 5px;
+			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		}
+		.menu-item h3 {
+			font-size: 24px;
+			margin: 0;
+			margin-bottom: 10px;
+		}
+		.menu-item p {
+			font-size: 18px;
+			margin: 0;
+			margin-bottom: 10px;
+			color: #888;
+		}
+		.menu-item .price {
+			font-size: 24px;
+			margin: 0;
+			margin-left: auto;
+			color: #f33;
+		}
+		.footer {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			animation: fade-in 1s ease-in-out;
+		}
+		.footer p {
+			margin: 0;
+			font-size: 18px;
+		}
+		.footer a {
+			color: #fff;
+			text-decoration: none;
+			font-size: 18px;
+			transition: all 0.2s ease-in-out;
+		}
+		.footer a:hover {
+			color: #f33;
+		}
+		.footer {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			animation: fade-in 1s ease-in-out;
+		}
+		.footer p {
+			margin: 0;
+			font-size: 18px;
+		}
+		.footer a {
+			color: #fff;
+			text-decoration: none;
+			font-size: 18px;
+			transition: all 0.2s ease-in-out;
+		}
+		.footer a:hover {
+			color: #f33;
+		}
+		
+		/* Keyframes */
+		@keyframes fade-in {
+			from { opacity: 0; }
+			to { opacity: 1; }
+		}
+		
+		@keyframes slide-up {
+			from { transform: translateY(100px); opacity: 0; }
+			to { transform: translateY(0); opacity: 1; }
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Socialist Chickaboo Cafe</h1>
+		<nav>
+			<a href="index.html">Home</a>
+			<a href="Menu.html">Menu</a>
+			<a href="Contact.html">Contact</a>
+		</nav>
+	</header>
+	
+	<main class="menu">
+		<h2>Our Menu</h2>
+	
+		<section class="menu-section">
+			<h3>Breakfast</h3>
+	
+			<div class="menu-item">
+				<img src="https://media.istockphoto.com/photos/isolated-maize-seed-picture-id174968461?k=6&m=174968461&s=612x612&w=0&h=_WM1xg6zUEQyZO_Iz1xYMMPG_B_7AJw-lvOOXMX4F0M=" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Single grain of corn</h4>
+					<p>THIS IS SOCIAlISM!</p>
+					<p class="price">FREE</p>
+				</div>
+			</div>
+
+			<div class="menu-item">
+				<img src="https://i1.wp.com/www.quallsag.com/wp-content/uploads/2017/01/Fresh-Pea.jpeg?ssl=1" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Single pea</h4>
+					<p>THIS IS SOCIAlISM!</p>
+					<p class="price">FREE</p>
+				</div>
+			</div>
+
+			<div class="menu-item">
+				<img src="https://via.placeholder.com/150" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Menu Item Name</h4>
+					<p>Description of the menu item goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<p class="price">FREE</p>
+				</div>
+			</div>
+
+			<div class="menu-item">
+				<img src="https://via.placeholder.com/150" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Menu Item Name</h4>
+					<p>Description of the menu item goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<p class="price">FREE</p>
+				</div>
+			</div>
+
+			<div class="menu-item">
+				<img src="https://via.placeholder.com/150" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Menu Item Name</h4>
+					<p>Description of the menu item goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<p class="price">FREE</p>
+				</div>
+			</div>
+	
+			<!-- Add more breakfast items here -->
+	
+		</section>
+	
+		<section class="menu-section">
+			<h3>Lunch</h3>
+	
+			<div class="menu-item">
+				<img src="https://via.placeholder.com/150" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Menu Item Name</h4>
+					<p>Description of the menu item goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<p class="price">FREE</p>
+				</div>
+			</div>
+
+			<div class="menu-item">
+				<img src="https://via.placeholder.com/150" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Menu Item Name</h4>
+					<p>Description of the menu item goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<p class="price">FREE</p>
+				</div>
+			</div>
+
+			<div class="menu-item">
+				<img src="https://via.placeholder.com/150" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Menu Item Name</h4>
+					<p>Description of the menu item goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<p class="price">FREE</p>
+				</div>
+			</div>
+
+			<div class="menu-item">
+				<img src="https://via.placeholder.com/150" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Menu Item Name</h4>
+					<p>Description of the menu item goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<p class="price">FREE</p>
+				</div>
+			</div>
+
+			<div class="menu-item">
+				<img src="https://via.placeholder.com/150" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Menu Item Name</h4>
+					<p>Description of the menu item goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<p class="price">FREE</p>
+				</div>
+			</div>
+	
+			<!-- Add more lunch items here -->
+	
+		</section>
+	
+		<section class="menu-section">
+			<h3>Dinner</h3>
+	
+			<div class="menu-item">
+				<img src="https://via.placeholder.com/150" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Menu Item Name</h4>
+					<p>Description of the menu item goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+						<p class="price">FREE</p>
+				</div>
+			</div>
+
+			<div class="menu-item">
+				<img src="https://via.placeholder.com/150" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Menu Item Name</h4>
+					<p>Description of the menu item goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+						<p class="price">FREE</p>
+				</div>
+			</div>
+
+			<div class="menu-item">
+				<img src="https://via.placeholder.com/150" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Menu Item Name</h4>
+					<p>Description of the menu item goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+						<p class="price">FREE</p>
+				</div>
+			</div>
+
+			<div class="menu-item">
+				<img src="https://via.placeholder.com/150" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Menu Item Name</h4>
+					<p>Description of the menu item goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+						<p class="price">FREE</p>
+				</div>
+			</div>
+
+			<div class="menu-item">
+				<img src="https://via.placeholder.com/150" alt="Menu item image">
+				<div class="menu-item-details">
+					<h4>Menu Item Name</h4>
+					<p>Description of the menu item goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+						<p class="price">FREE</p>
+				</div>
+			</div>
+	
+			<!-- Add more dinner items here -->
+	
+		</section>
+	</main>
+	
+	
+	<footer class="footer">
+		<p>&copy; 2023 Socialist Chickaboo Cafe</p>
+		<a href="#">Privacy Policy</a>
+	</footer>
+</body>
+</html>
+
+
+		

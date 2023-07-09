@@ -1,111 +1,129 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Youtube-Downloader</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Montserrat', sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f7f7f7;
-        color: #444;
-      }
-      header {
-        background-color: #2c3e50;
-        color: #fff;
-        text-align: center;
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      h1 {
-        margin: 0;
-        font-size: 36px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-      }
-      main {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-      }
-      .card {
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        margin: 20px;
-        padding: 20px;
-        text-align: center;
-        width: 300px;
-        transition: transform 0.3s ease;
-      }
-      .card:hover {
-        transform: translateY(-10px);
-      }
-      .card h2 {
-        margin-top: 0;
-        font-size: 24px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-      .card p {
-        margin-bottom: 20px;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 1.4;
-      }
-      .card a {
-        background-color: #2c3e50;
-        color: #fff;
-        display: block;
-        padding: 10px;
-        text-decoration: none;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-        font-size: 16px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-      .card a:hover {
-        background-color: #34495e;
-      }
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <h1>Chickaboo Software, Hatch a new experience!</h1>
-    </header>
-    <main>
-      <div class="card">
-        <h2>Malam-X's Youtube-Downloader</h2>
-        <p>This is the original Malam-X Youtube-Downloader</p>
-        <a href="Redirect-Malam-X.html">Bring me to the Github page!</a>
-      </div>
-      <div class="card">
-        <h2>Chicaboo's Enhanced Youtube-Downloader</h2>
-        <p>This is an enhanced version of the original Malam-X Youtube-Downloader.
-        </p>
-        <a href="Redirect Chickaboo's Enhanced Youtube-Downloader.html">Bring me to the Github page!</a>
-      </div>
-      <div class="card">
-        <h2>Chicaboo's Enhanced Youtube-Downloader with a UI</h2>
-        <p>This is an enhanced version of the original Malam-X Youtube-Downloader with a UI.</p>
-        <a href="Redirect Chickaboo's Enhanced Youtube-Downloader with UI.html">Bring me to the Github page!</a>
-      </div>
-      </div>
-    </main>
-  </body>
+<head>
+<title>I am sorry</title>
+<link rel="icon" type="image/x-icon" href="Favcon.png">
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: #777;
+  overflow-x: hidden;
+}
+
+.parallax {
+  position: relative;
+  opacity: 0.85;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallax-1 {
+  background-image: url("img_parallax.jpg");
+  min-height: 100%;
+}
+
+.parallax-2 {
+  background-image: url("img_parallax2.jpg");
+  min-height: 100%;
+}
+
+.parallax-3 {
+  background-image: url("img_parallax3.jpg");
+  min-height: 100%;
+}
+
+.parallax-4 {
+  background-image: url("img_parallax4.jpg");
+  min-height: 100%;
+  filter: brightness(0.6);
+  animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { transform: translateX(10px); }
+  100% { transform: translateX(0); }
+}
+
+.caption {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.parallax:hover .caption {
+  opacity: 1;
+}
+
+.caption span.border {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.caption span.border:hover {
+  background-color: #333;
+}
+
+h3 {
+  margin: 0;
+  font-size: 28px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+  .parallax {
+    background-attachment: scroll;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="parallax parallax-1">
+  <div class="caption">
+    <h3>Hello!</h3>
+    <span class="border">Savannah</span>
+  </div>
+</div>
+
+<div class="parallax parallax-2">
+  <div class="caption">
+    <h3>I am so I am so sorry that I hurt</h3>
+    <span class="border">you!</span>
+  </div>
+</div>
+
+<div class="parallax parallax-3">
+  <div class="caption">
+    <h3>Please forgive</h3>
+    <span class="border">me!</span>
+  </div>
+</div>
+
+<div class="parallax parallax-4">
+  <div class="caption">
+    <h3>LARRY IS COMING FOR YOU!</h3>
+    <span class="border">LOL!</span>
+  </div>
+</div>
+
+</body>
 </html>

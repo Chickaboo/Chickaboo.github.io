@@ -1,0 +1,127 @@
+<body>
+
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+  <nav class="main-menu" id="main-menu">
+    <a href="#">IGM</a>
+    <a href="#">Mentoring</a>
+    <a href="#">Rebuilt Man</a>
+    <a href="#">Restored</a>
+    <a href="#">The Execution</a>
+    <a href="#">You & the Big Guy</a>
+    <a href="#">Support</a>
+    <a href="#">Contact</a>
+    <a href="#">Credits</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="content" id="content">
+    <h1>Welcome!</h1>
+    <p>filler</p>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const mainMenu = document.getElementById('main-menu');
+      const content = document.getElementById('content');
+      const menuBtn = document.querySelector('.menu-btn');
+
+      mainMenu.classList.toggle('open');
+      content.classList.toggle('shift');
+
+      if (mainMenu.classList.contains('open')) {
+        menuBtn.style.left = '220px'; /* Move button to the right */
+      } else {
+        menuBtn.style.left = '20px'; /* Move button back to the original position */
+      }
+    }
+  </script>
+
+</body>
+<style>/* Menu Styles */
+  .menu-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px; /* Position on the top left */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #333;
+    color: #fff;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+    z-index: 2; /* Ensure the button stays above the menu */
+    transition: left 0.3s; /* Add transition for smooth movement */
+  }
+  
+  .main-menu {
+    position: absolute;
+    top: 0;
+    left: -200px;
+    width: 200px;
+    height: 100%;
+    background-color: #333;
+    transition: left 0.3s;
+    z-index: 1; /* Ensure the menu stays below the button */
+  }
+  
+  .main-menu.open {
+    left: 0;
+  }
+  
+  .main-menu.open + .menu-btn {
+    left: 220px; /* Move button to the right when the menu is open */
+  }
+  
+  .main-menu a {
+    display: block;
+    padding: 12px 24px;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+  }
+  
+  .submenu a {
+    background-color: #444;
+  }
+  
+  .main-menu:hover .submenu {
+    max-height: 500px;
+  }
+  
+  /* Page Styles */
+  body {
+    margin: 0;
+    font-family: Arial;
+  }
+  
+  .content {
+    margin-left: 0;
+    padding: 20px;
+    transition: margin-left 0.3s;
+  }
+  
+  .content.shift {
+    margin-left: 200px;
+  }
+  
+  h1 {
+    margin-top: 0;
+  }
+
+  .menu-btn:hover {
+    background-color: #555; /* Change background color when hovering */
+    transform: scale(1.1); /* Add a slight scale effect when hovering */
+  }
+
+  .main-menu a:hover {
+    background-color: #555; /* Change background color of menu items when hovering */
+  }
+  </style>

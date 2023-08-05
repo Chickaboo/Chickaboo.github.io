@@ -206,3 +206,12 @@ h6 {
   color: #000000;
   margin-top: 5px;
 }
+
+/* Background Styles */
+body {
+  background-image: url('images/Banner.jpg'), url('images/BackgroundNoYellow.jpg');
+  background-position: top, 0 0;
+  background-repeat: repeat-x, repeat;
+  background-attachment: fixed, scroll;
+  background-color: Black;
+}

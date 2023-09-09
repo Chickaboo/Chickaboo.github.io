@@ -460,28 +460,30 @@ saveButton.addEventListener('click', () => {
 
 
     // Function to load a tier list from a text file
-    loadTierListButton.addEventListener('click', () => {
-        loadButton.click(); // Trigger the file input to open the file dialog
-    });
+loadTierListButton.addEventListener('click', () => {
+    loadButton.click(); // Trigger the file input to open the file dialog
+});
 
-    loadButton.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const loadedTierList = e.target.result;
-                // Parse and populate your tier list here (replace this with your logic)
-                const lines = loadedTierList.split('\n');
-                for (let i = 0; i < lines.length; i++) {
-                    const tierInput = document.querySelectorAll('.tier-input')[i];
-                    if (tierInput) {
-                        tierInput.value = lines[i].trim();
-                    }
+loadButton.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const loadedTierList = e.target.result;
+            // Parse and populate your tier list here (replace this with your logic)
+            const lines = loadedTierList.split('\n');
+            const tierInputs = document.querySelectorAll('.tier-input, .tier-textarea'); // Select both input and textarea elements
+            for (let i = 0; i < lines.length; i++) {
+                const tierElement = tierInputs[i];
+                if (tierElement) {
+                    tierElement.value = lines[i].trim();
                 }
-            };
-            reader.readAsText(file);
-        }
-    });
+            }
+        };
+        reader.readAsText(file);
+    }
+});
+
     </script>
 </body>
 </html>

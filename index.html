@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tier List Maker</title>
+    <title>CTF Tier List Maker</title>
+    <link rel="icon" href="ctf.jpg" type="image/x-icon">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -314,14 +315,14 @@
     const ovalContainer = document.getElementById('oval-container');
     const toggleSwitch = document.getElementById('toggle-oval-container');
 
-    // Function to handle clicking on menu items and placing them in the active tier input
+    // Function to handle clicking on menu items and adding them to the active tier input
     menu.addEventListener('click', (e) => {
         const clickedMenuItem = e.target;
         if (clickedMenuItem.classList.contains('menu-item')) {
             const activeTierInput = document.querySelector('.tier-input.active');
             if (activeTierInput) {
-                activeTierInput.value = clickedMenuItem.innerText;
-                activeTierInput.classList.remove('active');
+                // Append the clicked word to the active tier input without overwriting
+                activeTierInput.value += ` ${clickedMenuItem.innerText}`;
             }
         }
     });

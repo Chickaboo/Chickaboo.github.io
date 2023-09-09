@@ -386,30 +386,44 @@ textarea.tier-textarea {
     const saveButton = document.getElementById('save-btn');
     const loadTierListButton = document.getElementById('load-tier-list-btn'); // Reference to the new load button
 
-    // Function to handle clicking on menu items and adding them to the active tier input
-    menu.addEventListener('click', (e) => {
-        const clickedMenuItem = e.target;
-        if (clickedMenuItem.classList.contains('menu-item')) {
-            const activeTierInput = document.querySelector('.tier-input.active');
-            if (activeTierInput) {
-                // Append the clicked word to the active tier input without overwriting
-                activeTierInput.value += ` ${clickedMenuItem.innerText}`;
-            }
+// Function to handle clicking on menu items and adding them to the active tier input or textarea
+menu.addEventListener('click', (e) => {
+    const clickedMenuItem = e.target;
+    if (clickedMenuItem.classList.contains('menu-item')) {
+        const activeTierInput = document.querySelector('.tier-input.active');
+        const activeTierTextarea = document.querySelector('.tier-textarea.active');
+        if (activeTierInput) {
+            // Append the clicked word to the active tier input without overwriting
+            activeTierInput.value += ` ${clickedMenuItem.innerText}`;
+        } else if (activeTierTextarea) {
+            // Append the clicked word to the active tier textarea without overwriting
+            activeTierTextarea.value += ` ${clickedMenuItem.innerText}`;
         }
-    });
+    }
+});
 
-    // Function to handle clicking on tier inputs to make them active
-    tierListContainer.addEventListener('click', (e) => {
-        const clickedTierInput = e.target.closest('.tier-input');
-        if (clickedTierInput) {
-            // Make the clicked tier input active
-            const activeTierInput = document.querySelector('.tier-input.active');
-            if (activeTierInput) {
-                activeTierInput.classList.remove('active');
-            }
-            clickedTierInput.classList.add('active');
+// Function to handle clicking on tier inputs or textareas to make them active
+tierListContainer.addEventListener('click', (e) => {
+    const clickedTierInput = e.target.closest('.tier-input');
+    const clickedTierTextarea = e.target.closest('.tier-textarea');
+    if (clickedTierInput || clickedTierTextarea) {
+        // Make the clicked tier input or textarea active
+        const activeTierInput = document.querySelector('.tier-input.active');
+        const activeTierTextarea = document.querySelector('.tier-textarea.active');
+        if (activeTierInput) {
+            activeTierInput.classList.remove('active');
         }
-    });
+        if (activeTierTextarea) {
+            activeTierTextarea.classList.remove('active');
+        }
+        if (clickedTierInput) {
+            clickedTierInput.classList.add('active');
+        } else if (clickedTierTextarea) {
+            clickedTierTextarea.classList.add('active');
+        }
+    }
+});
+
 
     // Function to toggle the oval container
     toggleSwitch.addEventListener('change', () => {

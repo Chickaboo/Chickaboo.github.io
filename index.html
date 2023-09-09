@@ -447,16 +447,17 @@ downloadButton.addEventListener('click', () => {
 
 
 
-    // Function to save the tier list as a text file
-    saveButton.addEventListener('click', () => {
-        const tierInputs = document.querySelectorAll('.tier-input');
-        const tierListText = Array.from(tierInputs).map(input => input.value).join('\n');
-        const blob = new Blob([tierListText], { type: 'text/plain' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'tier-list.txt';
-        a.click();
-    });
+// Function to save the tier list as a text file
+saveButton.addEventListener('click', () => {
+    const tierInputs = document.querySelectorAll('.tier-input, .tier-textarea'); // Select both input and textarea elements
+    const tierListText = Array.from(tierInputs).map(input => input.value).join('\n');
+    const blob = new Blob([tierListText], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'tier-list.txt';
+    a.click();
+});
+
 
     // Function to load a tier list from a text file
     loadTierListButton.addEventListener('click', () => {

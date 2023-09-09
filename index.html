@@ -86,6 +86,49 @@
     transform: scale(0.95); /* Scale down when clicked */
 }
 
+.save-button {
+    background-color: #008000; /* Green color for the download button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover state */
+.save-button:hover {
+    background-color: #00a000; /* Slightly darker green on hover */
+    transform: scale(1.05); /* Scale up on hover */
+}
+
+/* Click state */
+.save-button:active {
+    background-color: #007700; /* Darker green when clicked */
+    transform: scale(0.95); /* Scale down when clicked */
+}
+.load-button {
+    background-color: #008000; /* Green color for the download button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover state */
+.load-button:hover {
+    background-color: #00a000; /* Slightly darker green on hover */
+    transform: scale(1.05); /* Scale up on hover */
+}
+
+/* Click state */
+.load-button:active {
+    background-color: #007700; /* Darker green when clicked */
+    transform: scale(0.95); /* Scale down when clicked */
+}
+
         .switch-container {
             display: flex;
             align-items: center;
@@ -199,11 +242,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>CTF Tier List Maker</h1>
+        <h1>Tier List Maker</h1>
 
         <!-- Switch to toggle the oval container (with "checked" attribute) -->
         <div class="switch-container">
-            <label class="switch-label">Add credit container:</label>
+            <label class="switch-label">Add Oval Container:</label>
             <label class="switch">
                 <input type="checkbox" id="toggle-oval-container" checked>
                 <span class="slider"></span>
@@ -304,8 +347,14 @@
             </div>
         </div>
         <button class="download-button" id="download-btn">Download Tier List</button>
-    </div>
 
+
+        <!-- Add a file input element for loading tier lists -->
+        <input type="file" accept=".txt" id="load-btn" style="display: none;">
+    <!-- Add a button to save the tier list as a text file -->
+    <button class="save-button" id="save-btn">Save as Text</button>
+<input type="file" accept=".txt" id="load-btn" style="display: none;">
+        <button class="load-button" id="load-tier-list-btn">Load Tier List</button>
 
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
@@ -314,6 +363,9 @@
     const downloadButton = document.getElementById('download-btn');
     const ovalContainer = document.getElementById('oval-container');
     const toggleSwitch = document.getElementById('toggle-oval-container');
+    const loadButton = document.getElementById('load-btn');
+    const saveButton = document.getElementById('save-btn');
+    const loadTierListButton = document.getElementById('load-tier-list-btn'); // Reference to the new load button
 
     // Function to handle clicking on menu items and adding them to the active tier input
     menu.addEventListener('click', (e) => {
@@ -345,15 +397,50 @@
         ovalContainer.style.display = toggleSwitch.checked ? 'flex' : 'none';
     });
 
-    // Function to download tier list as a text file
+    // Function to download tier list as an image
     downloadButton.addEventListener('click', () => {
-            html2canvas(tierListContainer, { scale: 2 }).then(canvas => {
-                const a = document.createElement('a');
-                a.href = canvas.toDataURL('image/png');
-                a.download = 'tier-list.png';
-                a.click();
-            });
+        html2canvas(tierListContainer, { scale: 2 }).then(canvas => {
+            const a = document.createElement('a');
+            a.href = canvas.toDataURL('image/png');
+            a.download = 'tier-list.png';
+            a.click();
         });
+    });
+
+    // Function to save the tier list as a text file
+    saveButton.addEventListener('click', () => {
+        const tierInputs = document.querySelectorAll('.tier-input');
+        const tierListText = Array.from(tierInputs).map(input => input.value).join('\n');
+        const blob = new Blob([tierListText], { type: 'text/plain' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'tier-list.txt';
+        a.click();
+    });
+
+    // Function to load a tier list from a text file
+    loadTierListButton.addEventListener('click', () => {
+        loadButton.click(); // Trigger the file input to open the file dialog
+    });
+
+    loadButton.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const loadedTierList = e.target.result;
+                // Parse and populate your tier list here (replace this with your logic)
+                const lines = loadedTierList.split('\n');
+                for (let i = 0; i < lines.length; i++) {
+                    const tierInput = document.querySelectorAll('.tier-input')[i];
+                    if (tierInput) {
+                        tierInput.value = lines[i].trim();
+                    }
+                }
+            };
+            reader.readAsText(file);
+        }
+    });
     </script>
 </body>
 </html>

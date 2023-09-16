@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,41 +9,59 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #121212; /* Dark mode background color */
-            color: #fff; /* Text color */
+            background-color: #121212;
+            /* Dark mode background color */
+            color: #fff;
+            /* Text color */
             margin: 0;
             padding: 0;
         }
+
         .container {
             width: 100%;
-            max-width: 1200px; /* Maximum width for the container */
+            max-width: 1200px;
+            /* Maximum width for the container */
             margin: 20px auto;
             padding: 20px;
-            background-color: #292929; /* Darker background color for container */
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Adjust shadow color for dark mode */
-            display: flex;
-            flex-direction: column; /* Align tier list vertically */
-            align-items: center; /* Center items horizontally */
-        }
-        .tier-list-container {
-            width: 100%;
-            flex-grow: 1; /* Tier list takes up available vertical space */
+            background-color: #292929;
+            /* Darker background color for container */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            /* Adjust shadow color for dark mode */
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center tier labels horizontally */
-            margin-bottom: 20px; /* Add space between tier list and button */
-            background-color: #000; /* Black background color for tier list */
+            /* Align tier list vertically */
+            align-items: center;
+            /* Center items horizontally */
         }
+
+        .tier-list-container {
+            width: 100%;
+            flex-grow: 1;
+            /* Tier list takes up available vertical space */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Center tier labels horizontally */
+            margin-bottom: 20px;
+            /* Add space between tier list and button */
+            background-color: #000;
+            /* Black background color for tier list */
+        }
+
         .tier {
             display: flex;
             align-items: center;
             width: 100%;
-            height: 60px; /* Adjust the height of each tier row to make it thicker */
+            height: 60px;
+            /* Adjust the height of each tier row to make it thicker */
             margin-bottom: 10px;
-            background-color: #1e1e1e; /* Darker tier background color */
-            color: #fff; /* Tier label text color */
+            background-color: #1e1e1e;
+            /* Darker tier background color */
+            color: #fff;
+            /* Tier label text color */
             border-radius: 5px;
         }
+
         .tier input {
             flex-grow: 1;
             border: none;
@@ -50,122 +69,154 @@
             color: #fff;
             font-size: 16px;
             padding: 10px;
-            outline: none; /* Remove input focus outline */
+            outline: none;
+            /* Remove input focus outline */
         }
+
         .tier-letter {
-            width: 60px; /* Adjust the width of the tier letters */
-            height: 60px; /* Adjust the height of the tier letters */
+            width: 60px;
+            /* Adjust the width of the tier letters */
+            height: 60px;
+            /* Adjust the height of the tier letters */
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px; /* Increase font size for tier letters */
+            font-size: 24px;
+            /* Increase font size for tier letters */
             font-weight: bold;
-            border-radius: 5px; /* Make tier letter backgrounds square */
+            border-radius: 5px;
+            /* Make tier letter backgrounds square */
             margin-right: 10px;
         }
 
         /* Style for textarea */
-/* Style for smaller textarea */
-textarea.tier-textarea {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 40px; /* Adjust the height to match the old size */
-    margin-bottom: 10px;
-    background-color: #1e1e1e; /* Darker tier background color */
-    color: #fff; /* Tier label text color */
-    border-radius: 5px;
-    resize: none; /* Disable textarea resizing */
-    padding: 10px;
-    font-size: 14px; /* Adjust font size to match the old size */
-    outline: none; /* Remove input focus outline */
-}
+        /* Style for smaller textarea */
+        textarea.tier-textarea {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 40px;
+            /* Adjust the height to match the old size */
+            margin-bottom: 10px;
+            background-color: #1e1e1e;
+            /* Darker tier background color */
+            color: #fff;
+            /* Tier label text color */
+            border-radius: 5px;
+            resize: none;
+            /* Disable textarea resizing */
+            padding: 10px;
+            font-size: 14px;
+            /* Adjust font size to match the old size */
+            outline: none;
+            /* Remove input focus outline */
+        }
 
+        /* Normal state */
+        .download-button {
+            background-color: #008000;
+            /* Green color for the download button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
 
-      /* Normal state */
-.download-button {
-    background-color: #008000; /* Green color for the download button */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
+        /* Hover state */
+        .download-button:hover {
+            background-color: #00a000;
+            /* Slightly darker green on hover */
+            transform: scale(1.05);
+            /* Scale up on hover */
+        }
 
-/* Hover state */
-.download-button:hover {
-    background-color: #00a000; /* Slightly darker green on hover */
-    transform: scale(1.05); /* Scale up on hover */
-}
+        /* Click state */
+        .download-button:active {
+            background-color: #007700;
+            /* Darker green when clicked */
+            transform: scale(0.95);
+            /* Scale down when clicked */
+        }
 
-/* Click state */
-.download-button:active {
-    background-color: #007700; /* Darker green when clicked */
-    transform: scale(0.95); /* Scale down when clicked */
-}
+        .save-button {
+            background-color: #008000;
+            /* Green color for the download button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
 
-.save-button {
-    background-color: #008000; /* Green color for the download button */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
+        /* Hover state */
+        .save-button:hover {
+            background-color: #00a000;
+            /* Slightly darker green on hover */
+            transform: scale(1.05);
+            /* Scale up on hover */
+        }
 
-/* Hover state */
-.save-button:hover {
-    background-color: #00a000; /* Slightly darker green on hover */
-    transform: scale(1.05); /* Scale up on hover */
-}
+        /* Click state */
+        .save-button:active {
+            background-color: #007700;
+            /* Darker green when clicked */
+            transform: scale(0.95);
+            /* Scale down when clicked */
+        }
 
-/* Click state */
-.save-button:active {
-    background-color: #007700; /* Darker green when clicked */
-    transform: scale(0.95); /* Scale down when clicked */
-}
-.load-button {
-    background-color: #008000; /* Green color for the download button */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
+        .load-button {
+            background-color: #008000;
+            /* Green color for the download button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
 
-/* Hover state */
-.load-button:hover {
-    background-color: #00a000; /* Slightly darker green on hover */
-    transform: scale(1.05); /* Scale up on hover */
-}
+        /* Hover state */
+        .load-button:hover {
+            background-color: #00a000;
+            /* Slightly darker green on hover */
+            transform: scale(1.05);
+            /* Scale up on hover */
+        }
 
-/* Click state */
-.load-button:active {
-    background-color: #007700; /* Darker green when clicked */
-    transform: scale(0.95); /* Scale down when clicked */
-}
+        /* Click state */
+        .load-button:active {
+            background-color: #007700;
+            /* Darker green when clicked */
+            transform: scale(0.95);
+            /* Scale down when clicked */
+        }
 
         .switch-container {
             display: flex;
             align-items: center;
             margin-top: 20px;
         }
+
         .switch-label {
             color: #fff;
             margin-right: 10px;
         }
+
         .switch {
             position: relative;
             display: inline-block;
             width: 60px;
             height: 34px;
         }
-        .switch input { 
+
+        .switch input {
             display: none;
         }
+
         .slider {
             position: absolute;
             cursor: pointer;
@@ -177,6 +228,7 @@ textarea.tier-textarea {
             border-radius: 34px;
             transition: 0.4s;
         }
+
         .slider:before {
             position: absolute;
             content: "";
@@ -188,25 +240,35 @@ textarea.tier-textarea {
             border-radius: 50%;
             transition: 0.4s;
         }
-        input:checked + .slider {
-            background-color: #008000; /* Green color when switched on */
+
+        input:checked+.slider {
+            background-color: #008000;
+            /* Green color when switched on */
         }
-        input:checked + .slider:before {
+
+        input:checked+.slider:before {
             transform: translateX(26px);
         }
+
         .oval-container {
-            width: 70%; /* Adjusted width for the oval container (thinner) */
+            width: 60%;
+            /* Adjusted width for the oval container (thinner) */
             background-color: rgba(255, 255, 255, 0.7);
             border-radius: 50px;
             padding: 10px;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            justify-content: center; /* Center the oval container horizontally */
+            justify-content: center;
+            /* Center the oval container horizontally */
+            height: 50%;
         }
+
         .oval-icon {
-            width: 24px; /* Adjust the size of the oval icon */
-            height: 24px; /* Adjust the size of the oval icon */
+            width: 24px;
+            /* Adjust the size of the oval icon */
+            height: 24px;
+            /* Adjust the size of the oval icon */
             background-color: #0dff00;
             border-radius: 50%;
             margin-right: 10px;
@@ -215,12 +277,16 @@ textarea.tier-textarea {
             justify-content: center;
             position: relative;
         }
+
         .oval-icon img {
-            width: 80%; /* Adjust the size of the image */
-            height: 80%; /* Adjust the size of the image */
+            width: 80%;
+            /* Adjust the size of the image */
+            height: 80%;
+            /* Adjust the size of the image */
             border-radius: 50%;
             object-fit: cover;
         }
+
         .oval-input {
             flex-grow: 1;
             border: none;
@@ -228,13 +294,49 @@ textarea.tier-textarea {
             font-size: 16px;
             outline: none;
         }
+
+        .custom-text-area {
+            font-family: 'Arial', sans-serif;
+            /* Choose your preferred font */
+            font-size: 16px;
+            /* Adjust the font size as needed */
+            color: #333;
+            /* Choose your preferred text color */
+            border: 2px solid #0077FF;
+            /* Add a border with your preferred color */
+            padding: 10px;
+            /* Add padding to the textarea */
+            resize: none;
+            /* Disable textarea resizing */
+            outline: none;
+            /* Remove the default outline */
+            border-radius: 5px;
+            /* Add rounded corners */
+        }
+
+        .custom-text-area::placeholder {
+            color: #999;
+            /* Customize the placeholder text color */
+            font-style: italic;
+            /* Optionally, make the placeholder italic */
+        }
+
+        .custom-text-area:focus {
+            border-color: #0077FF;
+            /* Change border color on focus */
+        }
+
         /* Updated CSS for the "@" symbol */
-.at-symbol {
-    font-size: 20px; /* Adjust the size of the "@" symbol */
-    color: #fff; /* Text color for the "@" symbol */
-    margin-right: 5px; /* Add spacing between the "@" symbol and input */
-}
-.menu {
+        .at-symbol {
+            font-size: 20px;
+            /* Adjust the size of the "@" symbol */
+            color: #fff;
+            /* Text color for the "@" symbol */
+            margin-right: 5px;
+            /* Add spacing between the "@" symbol and input */
+        }
+
+        .menu {
             position: absolute;
             top: 20px;
             left: 20px;
@@ -256,13 +358,12 @@ textarea.tier-textarea {
         .menu-item:hover {
             background-color: #888;
         }
-
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Tier List Maker</h1>
-
         <!-- Switch to toggle the oval container (with "checked" attribute) -->
         <div class="switch-container">
             <label class="switch-label">Add Credit Container:</label>
@@ -271,19 +372,16 @@ textarea.tier-textarea {
                 <span class="slider"></span>
             </label>
         </div>
-
         <div class="tier-list-container" id="tier-list-container">
             <!-- Oval container (included in the tier list) -->
             <div class="tier oval-container" id="oval-container">
                 <div class="oval-icon">
                     <!-- Add an image here -->
-                 <!--    <img src="" alt="Custom Image"> -->
+                    <!--    <img src="" alt="Custom Image"> -->
                 </div>
                 <input type="text" class="oval-input" placeholder="Your name here">
             </div>
             <!-- Menu for dragging words -->
-
-
             <div class="tier">
                 <div class="tier-letter" style="background-color: #FF5733;">S</div>
                 <textarea type="text" placeholder="Enter players" class="tier-textarea"></textarea>
@@ -366,124 +464,110 @@ textarea.tier-textarea {
             <div class="menu-item" draggable="true">Flvfty</div>
             <div class="menu-item" draggable="true">xXYoungGamer24x</div>
         </div>
-
-
         <!-- Add a file input element for loading tier lists -->
         <input type="file" accept=".txt" id="load-btn" style="display: none;">
-    <!-- Add a button to save the tier list as a text file -->
-    <button class="save-button" id="save-btn">Save as Text</button>
-<input type="file" accept=".txt" id="load-btn" style="display: none;">
+        <!-- Add a button to save the tier list as a text file -->
+        <button class="save-button" id="save-btn">Save as Text</button>
+        <input type="file" accept=".txt" id="load-btn" style="display: none;">
         <button class="load-button" id="load-tier-list-btn">Load Tier List</button>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
-    <script>
-    const menu = document.getElementById('menu');
-    const tierListContainer = document.getElementById('tier-list-container');
-    const downloadButton = document.getElementById('download-btn');
-    const ovalContainer = document.getElementById('oval-container');
-    const toggleSwitch = document.getElementById('toggle-oval-container');
-    const loadButton = document.getElementById('load-btn');
-    const saveButton = document.getElementById('save-btn');
-    const loadTierListButton = document.getElementById('load-tier-list-btn'); // Reference to the new load button
-
-// Function to handle clicking on menu items and adding them to the active tier input or textarea
-menu.addEventListener('click', (e) => {
-    const clickedMenuItem = e.target;
-    if (clickedMenuItem.classList.contains('menu-item')) {
-        const activeTierInput = document.querySelector('.tier-input.active');
-        const activeTierTextarea = document.querySelector('.tier-textarea.active');
-        if (activeTierInput) {
-            // Append the clicked word to the active tier input without overwriting
-            activeTierInput.value += ` ${clickedMenuItem.innerText}`;
-        } else if (activeTierTextarea) {
-            // Append the clicked word to the active tier textarea without overwriting
-            activeTierTextarea.value += ` ${clickedMenuItem.innerText}`;
-        }
-    }
-});
-
-// Function to handle clicking on tier inputs or textareas to make them active
-tierListContainer.addEventListener('click', (e) => {
-    const clickedTierInput = e.target.closest('.tier-input');
-    const clickedTierTextarea = e.target.closest('.tier-textarea');
-    if (clickedTierInput || clickedTierTextarea) {
-        // Make the clicked tier input or textarea active
-        const activeTierInput = document.querySelector('.tier-input.active');
-        const activeTierTextarea = document.querySelector('.tier-textarea.active');
-        if (activeTierInput) {
-            activeTierInput.classList.remove('active');
-        }
-        if (activeTierTextarea) {
-            activeTierTextarea.classList.remove('active');
-        }
-        if (clickedTierInput) {
-            clickedTierInput.classList.add('active');
-        } else if (clickedTierTextarea) {
-            clickedTierTextarea.classList.add('active');
-        }
-    }
-});
-
-
-    // Function to toggle the oval container
-    toggleSwitch.addEventListener('change', () => {
-        ovalContainer.style.display = toggleSwitch.checked ? 'flex' : 'none';
-    });
-
-// Function to download the tier list as an image using dom-to-image
-downloadButton.addEventListener('click', () => {
-    const tierListContainer = document.getElementById('tier-list-container');
-
-    // Capture the content of the tierListContainer as an image
-    domtoimage.toBlob(tierListContainer)
-        .then(function (blob) {
-            // Create a download link for the image
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'tier-list.png';
-            a.click();
-        });
-});
-
-
-
-// Function to save the tier list as a text file
-saveButton.addEventListener('click', () => {
-    const tierInputs = document.querySelectorAll('.tier-input, .tier-textarea'); // Select both input and textarea elements
-    const tierListText = Array.from(tierInputs).map(input => input.value).join('\n');
-    const blob = new Blob([tierListText], { type: 'text/plain' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'tier-list.txt';
-    a.click();
-});
-
-
-    // Function to load a tier list from a text file
-loadTierListButton.addEventListener('click', () => {
-    loadButton.click(); // Trigger the file input to open the file dialog
-});
-
-loadButton.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            const loadedTierList = e.target.result;
-            // Parse and populate your tier list here (replace this with your logic)
-            const lines = loadedTierList.split('\n');
-            const tierInputs = document.querySelectorAll('.tier-input, .tier-textarea'); // Select both input and textarea elements
-            for (let i = 0; i < lines.length; i++) {
-                const tierElement = tierInputs[i];
-                if (tierElement) {
-                    tierElement.value = lines[i].trim();
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+        <script>
+            const menu = document.getElementById('menu');
+            const tierListContainer = document.getElementById('tier-list-container');
+            const downloadButton = document.getElementById('download-btn');
+            const ovalContainer = document.getElementById('oval-container');
+            const toggleSwitch = document.getElementById('toggle-oval-container');
+            const loadButton = document.getElementById('load-btn');
+            const saveButton = document.getElementById('save-btn');
+            const loadTierListButton = document.getElementById('load-tier-list-btn'); // Reference to the new load button
+            // Function to handle clicking on menu items and adding them to the active tier input or textarea
+            menu.addEventListener('click', (e) => {
+                const clickedMenuItem = e.target;
+                if (clickedMenuItem.classList.contains('menu-item')) {
+                    const activeTierInput = document.querySelector('.tier-input.active');
+                    const activeTierTextarea = document.querySelector('.tier-textarea.active');
+                    if (activeTierInput) {
+                        // Append the clicked word to the active tier input without overwriting
+                        activeTierInput.value += ` ${clickedMenuItem.innerText}`;
+                    } else if (activeTierTextarea) {
+                        // Append the clicked word to the active tier textarea without overwriting
+                        activeTierTextarea.value += ` ${clickedMenuItem.innerText}`;
+                    }
                 }
-            }
-        };
-        reader.readAsText(file);
-    }
-});
-
-    </script>
+            });
+            // Function to handle clicking on tier inputs or textareas to make them active
+            tierListContainer.addEventListener('click', (e) => {
+                const clickedTierInput = e.target.closest('.tier-input');
+                const clickedTierTextarea = e.target.closest('.tier-textarea');
+                if (clickedTierInput || clickedTierTextarea) {
+                    // Make the clicked tier input or textarea active
+                    const activeTierInput = document.querySelector('.tier-input.active');
+                    const activeTierTextarea = document.querySelector('.tier-textarea.active');
+                    if (activeTierInput) {
+                        activeTierInput.classList.remove('active');
+                    }
+                    if (activeTierTextarea) {
+                        activeTierTextarea.classList.remove('active');
+                    }
+                    if (clickedTierInput) {
+                        clickedTierInput.classList.add('active');
+                    } else if (clickedTierTextarea) {
+                        clickedTierTextarea.classList.add('active');
+                    }
+                }
+            });
+            // Function to toggle the oval container
+            toggleSwitch.addEventListener('change', () => {
+                ovalContainer.style.display = toggleSwitch.checked ? 'flex' : 'none';
+            });
+            // Function to download the tier list as an image using dom-to-image
+            downloadButton.addEventListener('click', () => {
+                const tierListContainer = document.getElementById('tier-list-container');
+                // Capture the content of the tierListContainer as an image
+                domtoimage.toBlob(tierListContainer).then(function(blob) {
+                    // Create a download link for the image
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(blob);
+                    a.download = 'tier-list.png';
+                    a.click();
+                });
+            });
+            // Function to save the tier list as a text file
+            saveButton.addEventListener('click', () => {
+                const tierInputs = document.querySelectorAll('.tier-input, .tier-textarea'); // Select both input and textarea elements
+                const tierListText = Array.from(tierInputs).map(input => input.value).join('\n');
+                const blob = new Blob([tierListText], {
+                    type: 'text/plain'
+                });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = 'tier-list.txt';
+                a.click();
+            });
+            // Function to load a tier list from a text file
+            loadTierListButton.addEventListener('click', () => {
+                loadButton.click(); // Trigger the file input to open the file dialog
+            });
+            loadButton.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const loadedTierList = e.target.result;
+                        // Parse and populate your tier list here (replace this with your logic)
+                        const lines = loadedTierList.split('\n');
+                        const tierInputs = document.querySelectorAll('.tier-input, .tier-textarea'); // Select both input and textarea elements
+                        for (let i = 0; i < lines.length; i++) {
+                            const tierElement = tierInputs[i];
+                            if (tierElement) {
+                                tierElement.value = lines[i].trim();
+                            }
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            });
+        </script>
 </body>
+
 </html>

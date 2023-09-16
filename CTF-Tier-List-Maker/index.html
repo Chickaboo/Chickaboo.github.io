@@ -16,6 +16,38 @@
             margin: 0;
             padding: 0;
         }
+        /* Widget container styles */
+        .github-widget {
+            font-family: Arial, sans-serif;
+            max-width: 180px;
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        /* GitHub logo styles */
+        .github-logo {
+            margin: 10px;
+            width: 30px;
+        }
+
+        /* Widget text styles */
+        .widget-text {
+            font-size: 14px;
+            margin: 10px;
+        }
+
+        /* Hover effect on the widget */
+        .github-widget:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
 
         .container {
             width: 100%;
@@ -439,6 +471,10 @@
         <button class="save-button" id="save-btn">Save as Text</button>
         <input type="file" accept=".txt" id="load-btn" style="display: none;">
         <button class="load-button" id="load-tier-list-btn">Load Tier List</button>
+        <a class="github-widget" href="https://github.com/Chickaboo/CTF-Tier-List-Maker" target="_blank">
+            <img class="github-logo" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo">
+            <p class="widget-text">GitHub Repository</p>
+        </a>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
         <script>
             const menu = document.getElementById('menu');

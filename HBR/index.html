@@ -80,101 +80,106 @@
     <script>
        // List of players for whom you want to fetch activity
        const players = ['chickaboo', 'ohmylord0', 'ctoman', 'Salaman478', 'GrayLazar', 'BrandonAloisio', 'lkrystozek', 'JuliaCubs', 'SavannahMcMurtrie', 'boniorzoe', 'nat-schlachter', 'That_Bro', 'jj_reference', 'RazorZB', 'Jacoh2', 'TJ13', 'Fishingformate', 'HBRChess'];
+        
+        function fetchUserActivity(player) {
+            // Replace {player} in the apiUrl with the current player's username
+            const apiUrl = `https://lichess.org/api/user/${player}/activity`;
 
-function fetchUserActivity(player) {
-    // Replace {player} in the apiUrl with the current player's username
-    const apiUrl = `https://lichess.org/api/user/${player}/activity`;
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (Array.isArray(data)) {
+                        let totalWins = 0;
 
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            if (Array.isArray(data)) {
-                let totalWins = 0;
+                        data.forEach(activity => {
+                            // Check if the activity is within the last seven days
+                            const currentTimestamp = Date.now();
+                            const sevenDaysAgoTimestamp = currentTimestamp - 7 * 24 * 60 * 60 * 1000;
 
-                data.forEach(activity => {
-                    // Check if the activity is within the last seven days
-                    const currentTimestamp = Date.now();
-                    const sevenDaysAgoTimestamp = currentTimestamp - 7 * 24 * 60 * 60 * 1000;
+                            if (activity.interval.start >= sevenDaysAgoTimestamp) {
+                                // Count wins only
+                                totalWins += activity.puzzles.score.win;
+                            }
+                        });
 
-                    if (activity.interval.start >= sevenDaysAgoTimestamp) {
-                        // Count wins only
-                        totalWins += activity.puzzles.score.win;
+                        // Update the bar chart
+                        updateBarChart(player, totalWins);
+                    } else {
+                        console.error(`Invalid data received for ${player}:`, data);
                     }
+                })
+                .catch(error => {
+                    console.error(`Error fetching user activity data for ${player}:`, error);
+                })
+                .finally(() => {
+                    // Delay for 5 minutes (300,000 milliseconds) before fetching the next player
+                    setTimeout(fetchNextUserActivity, 300000);
                 });
+        }
 
-                // Update the bar chart
-                updateBarChart(player, totalWins);
-            } else {
-                console.error(`Invalid data received for ${player}:`, data);
+        // Create a bar chart
+        const ctx = document.getElementById('barChart').getContext('2d');
+
+        // Initialize data arrays
+        const playerNames = [];
+        const playerWins = [];
+
+        const barChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: playerNames,
+                datasets: [{
+                    label: 'Puzzles Won (Last 7 Days)',
+                    data: playerWins,
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
-        })
-        .catch(error => {
-            console.error(`Error fetching user activity data for ${player}:`, error);
-        })
-        .finally(() => {
-            // Delay the next request by one second (1000 milliseconds)
-            setTimeout(() => fetchNextUserActivity(), 500);
         });
-}
 
-// Create a bar chart
-const ctx = document.getElementById('barChart').getContext('2d');
+        // Function to update the bar chart
+        function updateBarChart(player, totalWins) {
+            // Push player name and total wins to the arrays
+            playerNames.push(player);
+            playerWins.push(totalWins);
 
-// Initialize data arrays
-const playerNames = [];
-const playerWins = [];
+            // Sort players by total wins (most to least)
+            const sortedPlayers = playerNames.map((name, index) => ({
+                name,
+                wins: playerWins[index]
+            })).sort((a, b) => b.wins - a.wins);
 
-const barChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: playerNames,
-        datasets: [{
-            label: 'Puzzles Won (Last 7 Days)',
-            data: playerWins,
-            backgroundColor: 'rgba(75, 192, 192, 0.6)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+            // Update chart data based on sorted players
+            barChart.data.labels = sortedPlayers.map(player => player.name);
+            barChart.data.datasets[0].data = sortedPlayers.map(player => player.wins);
+            barChart.update();
+        }
+
+        // Function to fetch the next user activity
+        let currentPlayerIndex = 0;
+
+        function fetchNextUserActivity() {
+            if (currentPlayerIndex < players.length) {
+                fetchUserActivity(players[currentPlayerIndex]);
+                currentPlayerIndex++;
+            } else {
+                // Reset index to start over
+                currentPlayerIndex = 0;
+                // Delay for 5 minutes (300,000 milliseconds) before fetching the first player again
+                setTimeout(fetchNextUserActivity, 300000);
             }
         }
-    }
-});
 
-// Function to update the bar chart
-function updateBarChart(player, totalWins) {
-    // Push player name and total wins to the arrays
-    playerNames.push(player);
-    playerWins.push(totalWins);
-
-    // Sort players by total wins (most to least)
-    const sortedPlayers = playerNames.map((name, index) => ({
-        name,
-        wins: playerWins[index]
-    })).sort((a, b) => b.wins - a.wins);
-
-    // Update chart data based on sorted players
-    barChart.data.labels = sortedPlayers.map(player => player.name);
-    barChart.data.datasets[0].data = sortedPlayers.map(player => player.wins);
-    barChart.update();
-}
-
-// Function to fetch the next user activity
-let currentPlayerIndex = 0;
-
-function fetchNextUserActivity() {
-    if (currentPlayerIndex < players.length) {
-        fetchUserActivity(players[currentPlayerIndex]);
-        currentPlayerIndex++;
-    }
-}
-
-// Start fetching user activity data for each player in the list
-fetchNextUserActivity();
+        // Start fetching user activity data for the first player
+        fetchNextUserActivity();
     </script>
 </body>
 </html>

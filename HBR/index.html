@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Wins Leaderboard</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #2196F3, #FF9800);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .menu {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition to box-shadow */
+        }
+        .menu:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.2); /* Adjusted shadow on hover */
+      }
+
+        h1 {
+            color: #2196F3;
+            text-align: center;
+            font-size: 36px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        h1 img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        canvas {
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+    <!-- Add Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="menu">
+        <h1><img src="logo.png" alt="Logo">Puzzle Wins Leaderboard</h1>
+        <canvas id="barChart" width="500" height="250"></canvas>
+    </div>
+
+    <script>
+       // List of players for whom you want to fetch activity
+       const players = ['chickaboo', 'ctoman', 'Salaman478', 'GrayLazar', 'BrandonAloisio', 'lkrystozek', 'JuliaCubs', 'SavannahMcMurtrie', 'boniorzoe', 'nat-schlachter', 'That_Bro', 'jj_reference', 'RazorZB', 'Jacoh2', 'TJ13', 'Fishingformate', 'HBRChess'];
+
+function fetchUserActivity(player) {
+    // Replace {player} in the apiUrl with the current player's username
+    const apiUrl = `https://lichess.org/api/user/${player}/activity`;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (Array.isArray(data)) {
+                let totalWins = 0;
+
+                data.forEach(activity => {
+                    // Check if the activity is within the last seven days
+                    const currentTimestamp = Date.now();
+                    const sevenDaysAgoTimestamp = currentTimestamp - 7 * 24 * 60 * 60 * 1000;
+
+                    if (activity.interval.start >= sevenDaysAgoTimestamp) {
+                        // Count wins only
+                        totalWins += activity.puzzles.score.win;
+                    }
+                });
+
+                // Update the bar chart
+                updateBarChart(player, totalWins);
+            } else {
+                console.error(`Invalid data received for ${player}:`, data);
+            }
+        })
+        .catch(error => {
+            console.error(`Error fetching user activity data for ${player}:`, error);
+        })
+        .finally(() => {
+            // Delay the next request by one second (1000 milliseconds)
+            setTimeout(() => fetchNextUserActivity(), 500);
+        });
+}
+
+// Create a bar chart
+const ctx = document.getElementById('barChart').getContext('2d');
+
+// Initialize data arrays
+const playerNames = [];
+const playerWins = [];
+
+const barChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: playerNames,
+        datasets: [{
+            label: 'Puzzles Won (Last 7 Days)',
+            data: playerWins,
+            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+// Function to update the bar chart
+function updateBarChart(player, totalWins) {
+    // Push player name and total wins to the arrays
+    playerNames.push(player);
+    playerWins.push(totalWins);
+
+    // Sort players by total wins (most to least)
+    const sortedPlayers = playerNames.map((name, index) => ({
+        name,
+        wins: playerWins[index]
+    })).sort((a, b) => b.wins - a.wins);
+
+    // Update chart data based on sorted players
+    barChart.data.labels = sortedPlayers.map(player => player.name);
+    barChart.data.datasets[0].data = sortedPlayers.map(player => player.wins);
+    barChart.update();
+}
+
+// Function to fetch the next user activity
+let currentPlayerIndex = 0;
+
+function fetchNextUserActivity() {
+    if (currentPlayerIndex < players.length) {
+        fetchUserActivity(players[currentPlayerIndex]);
+        currentPlayerIndex++;
+    }
+}
+
+// Start fetching user activity data for each player in the list
+fetchNextUserActivity();
+    </script>
+</body>
+</html>
